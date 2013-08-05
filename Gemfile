@@ -30,8 +30,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'dotenv-rails'
   gem 'pry-debugger'
+  gem 'rspec-rails'
 end
 
 group :doc do
