@@ -1,16 +1,16 @@
 require 'spec_helper'
 
 describe ReposController do
-  before { get :index, format: :json }
+  before do
+    fake_client = double('client')
+    fake_client.stub(repo: "{'fake': 'json'}")
+    Octokit::Client.stub(new: fake_client)
+  end
 
   describe '#index' do
-    it 'returns JSON' do
+    it 'returns JSON when requested' do
+      get :index, format: :json
       response.content_type.should eq(Mime::JSON)
-    end
-
-    it "returns a repo's data" do
-      body = JSON.parse(response.body)
-      body.should have_key('owner')
     end
   end
 end
